@@ -95,11 +95,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ZeeksGeeks/strapi-plugin-import-export-entries.git"
+    "url": "git+https://github.com/ZeeksGeeks/strapi-plugin-import-export-entries-zg.git"
   },
   "bugs": {
-    "url": "https://github.com/Baboo7/strapi-plugin-import-export-entries/issues"
+    "url": "https://github.com/ZeeksGeeks/strapi-plugin-import-export-entries-zg/issues"
   },
-  "homepage": "https://github.com/Baboo7/strapi-plugin-import-export-entries#readme",
+  "homepage": "https://github.com/ZeeksGeeks/strapi-plugin-import-export-entries-zg#readme",
   "license": "MIT"
 }
