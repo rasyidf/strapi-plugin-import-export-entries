@@ -28,13 +28,13 @@ type ImportFailures = {
   data: any;
 };
 
-class IdMapper {
+export class IdMapper {
   private mapping: {
     [slug in SchemaUID]?: Map<string | number, string | number>;
   } = {};
 
-  public getMapping(slug: SchemaUID, fileId: string | number) {
-    return this.mapping[slug]?.get(`${fileId}`);
+  public getMapping(slug: SchemaUID, fileId: string | number, defId?: string | number) {
+    return this.mapping[slug]?.get(`${fileId}`) || defId;
   }
 
   public setMapping(slug: SchemaUID, fileId: string | number, dbId: string | number) {

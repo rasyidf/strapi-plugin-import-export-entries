@@ -1,10 +1,12 @@
 import csvtojson from 'csvtojson';
 import { isArraySafe } from '../../../libs/arrays';
 import { isObjectSafe } from '../../../libs/objects';
-import { getModelAttributes } from '../../utils/models';
+import { getModelAttributes, getModel } from '../../utils/models';
 import { EnumValues } from '../../../types';
 import { SchemaUID } from '../../types';
+import { IdMapper } from '../import/import-v2';
 
+const headerMap = new IdMapper();
 const inputFormatToParser = {
   csv: parseCsv,
   jso: parseJso,
@@ -38,12 +40,22 @@ async function parseInputData(format: InputFormat, dataRaw: InputDataRaw, { slug
 
 async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
   let data = await csvtojson().fromString(dataRaw);
+  const schema = getModel(slug);
+
+  if(schema?.pluginOptions?.['import-export-map']){
+    schema?.pluginOptions?.['import-export-map'].forEach((entry) =>{
+      const k_V_pair = entry.split("=");
+      headerMap.setMapping(slug, k_V_pair[0], k_V_pair[1]);
+    });
+  }
+
 
   const relationNames = getModelAttributes(slug, { filterType: ['component', 'dynamiczone', 'media', 'relation'] }).map((a) => a.name);
   data = data.map((datum) => {
     for (let name of relationNames) {
       try {
-        datum[name] = JSON.parse(datum[name]);
+        let dname = headerMap.getMapping(name, name);
+        datum[name] = JSON.parse(datum[dname]);
       } catch (err) {
         strapi.log.error(err);
       }
