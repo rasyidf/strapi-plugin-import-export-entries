@@ -95,7 +95,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Baboo7/strapi-plugin-import-export-entries.git"
+    "url": "git+https://github.com/ZeeksGeeks/strapi-plugin-import-export-entries.git"
   },
   "bugs": {
     "url": "https://github.com/Baboo7/strapi-plugin-import-export-entries/issues"
