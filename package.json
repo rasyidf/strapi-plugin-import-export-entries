@@ -3,7 +3,7 @@
   "version": "1.23.1",
   "description": "Import/Export data from and to your database in just few clicks.",
   "strapi": {
-    "name": "import-export-entries",
+    "name": "import-export-entries-zg",
     "description": "Import/Export data from and to your database in just few clicks.",
     "kind": "plugin",
     "displayName": "Import Export Entries"
