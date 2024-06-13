@@ -78,6 +78,9 @@ type Schema = CollectionTypeSchema | SingleTypeSchema | ComponentSchema;
 type CollectionTypeSchema = StrapiCollectionTypeSchema & SchemaPluginOptions;
 type SingleTypeSchema = StrapiSingleTypeSchema & SchemaPluginOptions;
 type ComponentSchema = StrapiComponentSchema & { uid: SchemaUID } & SchemaPluginOptions;
+type RelationsId = {
+  [key:string]:Record<string,number>
+}
 type SchemaPluginOptions = {
   pluginOptions?: {
     'content-manager'?: {
@@ -94,6 +97,7 @@ type SchemaPluginOptions = {
     };
     'import-export-map'?: {
       k_v_pairs?: Array<string>;
+      relations_id?: RelationsId;
     };
   };
 };

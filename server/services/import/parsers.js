@@ -87,12 +87,20 @@ function parseCsv(dataRaw, { slug }) {
             return datum;
         });
         data = data.map((datum) => {
+            var _a, _b;
             for (let name of Object.keys(schema.attributes)) {
                 try {
                     let dname = headerMap.getMapping(slug, name);
                     console.log("dname: ", dname, "name: ", name, "datum: ", datum);
                     if (dname != undefined && !relationNames.includes(name)) {
                         datum[name] = datum[dname];
+                    }
+                    if (dname != undefined && relationNames.includes(name)) {
+                        let relations = (_b = (_a = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _a === void 0 ? void 0 : _a['import-export-map']) === null || _b === void 0 ? void 0 : _b.relations_id;
+                        if (relations) {
+                            console.log("relations:", relations[name][datum[name]]);
+                            datum[name] = relations[name][datum[name]];
+                        }
                     }
                 }
                 catch (err) {

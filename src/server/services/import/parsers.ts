@@ -94,7 +94,16 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
         console.log("dname: ", dname, "name: ", name, "datum: ", datum );
         if(dname != undefined && !relationNames.includes(name)){
           datum[name] = datum[dname];
-        }        
+        }
+        
+        if(dname != undefined && relationNames.includes(name)){
+          let relations = schema?.pluginOptions?.['import-export-map']?.relations_id;
+          if(relations){
+            console.log("relations:", relations[name][datum[name]]);
+            datum[name] = relations[name][datum[name]];            
+          }
+          
+        }      
       } catch (err) {
         strapi.log.error(err);
       }
