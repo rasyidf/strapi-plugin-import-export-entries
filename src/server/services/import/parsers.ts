@@ -4,7 +4,7 @@ import { isObjectSafe } from '../../../libs/objects';
 import { getModelAttributes, getModel } from '../../utils/models';
 import { EnumValues } from '../../../types';
 import { SchemaUID } from '../../types';
-import IdMapper from '../import/import-v2';
+import { IdMapper } from '../import/import-v2';
 
 const headerMap = new IdMapper();
 const inputFormatToParser = {
