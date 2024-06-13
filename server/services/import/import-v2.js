@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IdMapper = void 0;
 const cloneDeep_1 = __importDefault(require("lodash/cloneDeep"));
 const isEmpty_1 = __importDefault(require("lodash/isEmpty"));
 const omit_1 = __importDefault(require("lodash/omit"));
@@ -38,7 +37,7 @@ class IdMapper {
         this.mapping[slug].set(`${fileId}`, dbId);
     }
 }
-exports.IdMapper = IdMapper;
+exports.default = IdMapper;
 /**
  * Import data.
  * @returns {Promise<ImportDataRes>}
