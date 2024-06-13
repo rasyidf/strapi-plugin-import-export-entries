@@ -18,8 +18,23 @@ const arrays_1 = require("../../../libs/arrays");
 const objects_1 = require("../../../libs/objects");
 const models_1 = require("../../utils/models");
 // const IdMapper = require('../import/import-v2/IdMapper');
-const import_v2_1 = require("../import/import-v2");
-const headerMap = new import_v2_1.IdMapper();
+// import { IdMapper } from '../import/import-v2';
+class IdMapper {
+    constructor() {
+        this.mapping = {};
+    }
+    getMapping(slug, fileId) {
+        var _a;
+        return (_a = this.mapping[slug]) === null || _a === void 0 ? void 0 : _a.get(`${fileId}`);
+    }
+    setMapping(slug, fileId, dbId) {
+        if (!this.mapping[slug]) {
+            this.mapping[slug] = new Map();
+        }
+        this.mapping[slug].set(`${fileId}`, dbId);
+    }
+}
+const headerMap = new IdMapper();
 const inputFormatToParser = {
     csv: parseCsv,
     jso: parseJso,

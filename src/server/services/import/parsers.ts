@@ -5,7 +5,28 @@ import { getModelAttributes, getModel } from '../../utils/models';
 import { EnumValues } from '../../../types';
 import { SchemaUID } from '../../types';
 // const IdMapper = require('../import/import-v2/IdMapper');
-import { IdMapper } from '../import/import-v2';
+// import { IdMapper } from '../import/import-v2';
+
+class IdMapper {
+
+  constructor(){}
+
+  private mapping: {
+    [slug in SchemaUID]?: Map<string | number, string | number>;
+  } = {};
+
+  public getMapping(slug: SchemaUID, fileId: string | number) {
+    return this.mapping[slug]?.get(`${fileId}`);
+  }
+
+  public setMapping(slug: SchemaUID, fileId: string | number, dbId: string | number) {
+    if (!this.mapping[slug]) {
+      this.mapping[slug] = new Map<string | number, string | number>();
+    }
+
+    this.mapping[slug]!.set(`${fileId}`, dbId);
+  }
+}
 
 const headerMap = new IdMapper();
 const inputFormatToParser = {
