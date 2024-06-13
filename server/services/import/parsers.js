@@ -91,7 +91,7 @@ function parseCsv(dataRaw, { slug }) {
                 try {
                     let dname = headerMap.getMapping(slug, name);
                     console.log("dname: ", dname, "name: ", name, "datum: ", datum);
-                    if (dname != undefined) {
+                    if (dname != undefined && !relationNames.includes(name)) {
                         datum[name] = datum[dname];
                     }
                 }
