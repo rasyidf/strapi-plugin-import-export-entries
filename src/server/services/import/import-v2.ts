@@ -28,7 +28,9 @@ type ImportFailures = {
   data: any;
 };
 
-export class IdMapper {
+export { IdMapper }
+
+class IdMapper {
 
   constructor(){}
 
@@ -48,6 +50,7 @@ export class IdMapper {
     this.mapping[slug]!.set(`${fileId}`, dbId);
   }
 }
+
 
 /**
  * Import data.
@@ -521,6 +524,6 @@ const updateOrCreateSingleTypeEntry = async (
   }
 };
 
-module.exports = IdMapper, {
+module.exports = {
   importDataV2,
 };
