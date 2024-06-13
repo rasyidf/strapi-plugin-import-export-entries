@@ -78,9 +78,22 @@ function parseCsv(dataRaw, { slug }) {
         data = data.map((datum) => {
             for (let name of relationNames) {
                 try {
-                    let dname = headerMap.getMapping(slug, name) || name;
+                    datum[name] = JSON.parse(datum[name]);
+                }
+                catch (err) {
+                    strapi.log.error(err);
+                }
+            }
+            return datum;
+        });
+        data = data.map((datum) => {
+            for (let name of Object.keys(schema.attributes)) {
+                try {
+                    let dname = headerMap.getMapping(slug, name);
                     console.log("dname: ", dname, "name: ", name, "datum: ", datum);
-                    datum[name] = JSON.parse(datum[dname]);
+                    if (dname != undefined) {
+                        datum[name] = datum[dname];
+                    }
                 }
                 catch (err) {
                     strapi.log.error(err);
