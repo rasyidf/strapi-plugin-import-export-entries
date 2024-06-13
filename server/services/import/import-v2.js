@@ -137,6 +137,7 @@ const importContentTypeSlug = (slugEntries, { slug, user, idField, importStage, 
     const failures = [];
     for (let [fileId, fileEntry] of fileEntries) {
         try {
+            console.log("Import CT slug: ", slug, "Import CT fileEntry: ", fileEntry);
             yield updateOrCreate(user, slug, fileId, fileEntry, idField, { importStage, fileIdToDbId, componentsDataStore });
         }
         catch (err) {

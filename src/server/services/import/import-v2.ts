@@ -205,6 +205,7 @@ const importContentTypeSlug = async (
   const failures: ImportFailures[] = [];
   for (let [fileId, fileEntry] of fileEntries) {
     try {
+      console.log("Import CT slug: ", slug, "Import CT fileEntry: ", fileEntry);
       await updateOrCreate(user, slug, fileId, fileEntry, idField, { importStage, fileIdToDbId, componentsDataStore });
     } catch (err: any) {
       strapi.log.error(err);
