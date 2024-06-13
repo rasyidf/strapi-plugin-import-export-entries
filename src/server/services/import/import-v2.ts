@@ -226,6 +226,7 @@ const updateOrCreate = async (
   idFieldArg: string | undefined,
   { importStage, fileIdToDbId, componentsDataStore }: { importStage: ImportStage; fileIdToDbId: IdMapper; componentsDataStore: Partial<Record<SchemaUID, SlugEntries>> },
 ) => {
+  console.log("----------Running Update or Create----------");
   const schema = getModel(slug);
   const idField = idFieldArg || schema?.pluginOptions?.['import-export-entries-zg']?.idField || 'id';
 

@@ -151,6 +151,7 @@ const importContentTypeSlug = (slugEntries, { slug, user, idField, importStage, 
 });
 const updateOrCreate = (user, slug, fileId, fileEntryArg, idFieldArg, { importStage, fileIdToDbId, componentsDataStore }) => __awaiter(void 0, void 0, void 0, function* () {
     var _c, _d;
+    console.log("----------Running Update or Create----------");
     const schema = (0, models_1.getModel)(slug);
     const idField = idFieldArg || ((_d = (_c = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _c === void 0 ? void 0 : _c['import-export-entries-zg']) === null || _d === void 0 ? void 0 : _d.idField) || 'id';
     let fileEntry = (0, cloneDeep_1.default)(fileEntryArg);
