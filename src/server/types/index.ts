@@ -95,8 +95,14 @@ type SchemaPluginOptions = {
     'import-export-entries-zg'?: {
       idField?: string;
     };
+    //custom csv mapping if using different table headers than the columns in the database 
     'import-export-map'?: {
+      //Establish map from CSV table headers to Strapi object fields, listing the Strapi object field name first followed by table header 
+      //ie. ["item_number=Stock #", "asking_price=Price Internet"]
       k_v_pairs?: Array<string>;
+      //If you are importing mapped entries that include RelationName of relations and you need to convert the CSV value to a relationship id
+      //Identify the relationship field name as the Key followed by a dictionary of the CSV values as keys and the relationship ids as the values
+      //ie. {"status":{"TRUE":3, "FALSE":4}}
       relations_id?: RelationsId;
     };
   };
