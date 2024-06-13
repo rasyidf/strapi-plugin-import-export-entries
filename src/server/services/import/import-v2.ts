@@ -71,6 +71,7 @@ const importDataV2 = async (
     idField: string;
   },
 ) => {
+  console.log("----------importData import.js v2----------");
   const { data } = fileContent;
 
   const slugs: SchemaUID[] = Object.keys(data) as SchemaUID[];

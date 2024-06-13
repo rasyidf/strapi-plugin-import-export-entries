@@ -26,6 +26,7 @@ const { parseInputData } = require('./parsers');
  * @returns {Promise<ImportDataRes>}
  */
 const importData = async (dataRaw, { slug, format, user, idField }) => {
+  console.log("----------importData import.js v1----------");
   let data = await parseInputData(format, dataRaw, { slug });
   data = toArray(data);
 
