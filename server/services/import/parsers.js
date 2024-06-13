@@ -18,7 +18,7 @@ const arrays_1 = require("../../../libs/arrays");
 const objects_1 = require("../../../libs/objects");
 const models_1 = require("../../utils/models");
 // const IdMapper = require('../import/import-v2/IdMapper');
-const import_v2_1 = require("./import-v2");
+const import_v2_1 = require("../import/import-v2");
 const headerMap = new import_v2_1.IdMapper();
 const inputFormatToParser = {
     csv: parseCsv,
