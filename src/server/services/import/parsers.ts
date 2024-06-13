@@ -99,8 +99,8 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
         if(dname != undefined && relationNames.includes(name)){
           let relations = schema?.pluginOptions?.['import-export-map']?.relations_id;
           if(relations){
-            console.log("relations:", relations[name][datum[name]]);
-            datum[name] = relations[name][datum[name]];            
+            console.log("relations:", relations);
+            datum[name] = relations[name][datum[dname]];            
           }
           
         }      

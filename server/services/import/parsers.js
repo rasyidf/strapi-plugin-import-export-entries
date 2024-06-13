@@ -98,8 +98,8 @@ function parseCsv(dataRaw, { slug }) {
                     if (dname != undefined && relationNames.includes(name)) {
                         let relations = (_b = (_a = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _a === void 0 ? void 0 : _a['import-export-map']) === null || _b === void 0 ? void 0 : _b.relations_id;
                         if (relations) {
-                            console.log("relations:", relations[name][datum[name]]);
-                            datum[name] = relations[name][datum[name]];
+                            console.log("relations:", relations);
+                            datum[name] = relations[name][datum[dname]];
                         }
                     }
                 }
