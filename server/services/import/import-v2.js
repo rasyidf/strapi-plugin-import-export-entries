@@ -420,6 +420,6 @@ const updateOrCreateSingleTypeEntry = (user, slug, fileId, fileEntry, { importSt
         }
     }
 });
-module.exports = IdMapper, {
+module.exports = {
     importDataV2,
 };
