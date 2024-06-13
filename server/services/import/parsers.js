@@ -70,6 +70,7 @@ function parseCsv(dataRaw, { slug }) {
             (_d = (_c = (_b = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _b === void 0 ? void 0 : _b['import-export-map']) === null || _c === void 0 ? void 0 : _c.k_v_pairs) === null || _d === void 0 ? void 0 : _d.forEach((entry) => {
                 const k_V_pair = entry.split("=");
                 headerMap.setMapping(slug, k_V_pair[0], k_V_pair[1]);
+                console.log('Slug: ', slug, "KV pairs: ", k_V_pair[0], k_V_pair[1]);
             });
         }
         const relationNames = (0, models_1.getModelAttributes)(slug, { filterType: ['component', 'dynamiczone', 'media', 'relation'] }).map((a) => a.name);
@@ -77,6 +78,7 @@ function parseCsv(dataRaw, { slug }) {
             for (let name of relationNames) {
                 try {
                     let dname = headerMap.getMapping(slug, name) || name;
+                    console.log("dname: ", dname);
                     datum[name] = JSON.parse(datum[dname]);
                 }
                 catch (err) {
