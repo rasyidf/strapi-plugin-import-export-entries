@@ -521,6 +521,6 @@ const updateOrCreateSingleTypeEntry = async (
   }
 };
 
-module.exports = {
+module.exports = IdMapper, {
   importDataV2,
 };
