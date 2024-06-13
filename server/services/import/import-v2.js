@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IdMapper = void 0;
 const cloneDeep_1 = __importDefault(require("lodash/cloneDeep"));
 const isEmpty_1 = __importDefault(require("lodash/isEmpty"));
 const omit_1 = __importDefault(require("lodash/omit"));
@@ -23,22 +22,23 @@ const objects_1 = require("../../../libs/objects");
 const models_1 = require("../../utils/models");
 const lodash_1 = require("lodash");
 const file_1 = require("./utils/file");
-class IdMapper {
-    constructor() {
-        this.mapping = {};
-    }
-    getMapping(slug, fileId) {
-        var _a;
-        return (_a = this.mapping[slug]) === null || _a === void 0 ? void 0 : _a.get(`${fileId}`);
-    }
-    setMapping(slug, fileId, dbId) {
-        if (!this.mapping[slug]) {
-            this.mapping[slug] = new Map();
-        }
-        this.mapping[slug].set(`${fileId}`, dbId);
-    }
-}
-exports.IdMapper = IdMapper;
+const id_mapper_1 = require("./utils/id-mapper");
+// export { IdMapper }
+// class IdMapper {
+//   constructor(){}
+//   private mapping: {
+//     [slug in SchemaUID]?: Map<string | number, string | number>;
+//   } = {};
+//   public getMapping(slug: SchemaUID, fileId: string | number) {
+//     return this.mapping[slug]?.get(`${fileId}`);
+//   }
+//   public setMapping(slug: SchemaUID, fileId: string | number, dbId: string | number) {
+//     if (!this.mapping[slug]) {
+//       this.mapping[slug] = new Map<string | number, string | number>();
+//     }
+//     this.mapping[slug]!.set(`${fileId}`, dbId);
+//   }
+// }
 /**
  * Import data.
  * @returns {Promise<ImportDataRes>}
@@ -47,7 +47,7 @@ const importDataV2 = (fileContent, { slug: slugArg, user, idField, }) => __await
     const { data } = fileContent;
     const slugs = Object.keys(data);
     let failures = [];
-    const fileIdToDbId = new IdMapper();
+    const fileIdToDbId = new id_mapper_1.IdMapper();
     const { componentSlugs, mediaSlugs, contentTypeSlugs } = splitSlugs(slugs);
     const componentsDataStore = {};
     for (const slug of componentSlugs) {

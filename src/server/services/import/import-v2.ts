@@ -10,6 +10,7 @@ import { Entry, EntryId, Schema, SchemaUID, User } from '../../types';
 import { head, toPairs } from 'lodash';
 import { FileEntry, FileEntryDynamicZone, FileId } from './types';
 import { findOrImportFile } from './utils/file';
+import { IdMapper } from './utils/id-mapper';
 
 type Import = {
   version: 2;
@@ -28,28 +29,28 @@ type ImportFailures = {
   data: any;
 };
 
-export { IdMapper }
+// export { IdMapper }
 
-class IdMapper {
+// class IdMapper {
 
-  constructor(){}
+//   constructor(){}
 
-  private mapping: {
-    [slug in SchemaUID]?: Map<string | number, string | number>;
-  } = {};
+//   private mapping: {
+//     [slug in SchemaUID]?: Map<string | number, string | number>;
+//   } = {};
 
-  public getMapping(slug: SchemaUID, fileId: string | number) {
-    return this.mapping[slug]?.get(`${fileId}`);
-  }
+//   public getMapping(slug: SchemaUID, fileId: string | number) {
+//     return this.mapping[slug]?.get(`${fileId}`);
+//   }
 
-  public setMapping(slug: SchemaUID, fileId: string | number, dbId: string | number) {
-    if (!this.mapping[slug]) {
-      this.mapping[slug] = new Map<string | number, string | number>();
-    }
+//   public setMapping(slug: SchemaUID, fileId: string | number, dbId: string | number) {
+//     if (!this.mapping[slug]) {
+//       this.mapping[slug] = new Map<string | number, string | number>();
+//     }
 
-    this.mapping[slug]!.set(`${fileId}`, dbId);
-  }
-}
+//     this.mapping[slug]!.set(`${fileId}`, dbId);
+//   }
+// }
 
 
 /**
