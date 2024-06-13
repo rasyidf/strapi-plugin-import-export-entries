@@ -92,5 +92,8 @@ type SchemaPluginOptions = {
     'import-export-entries'?: {
       idField?: string;
     };
+    'import-export-map'?: {
+      k_v_pairs?: Array<string>;
+    };
   };
 };

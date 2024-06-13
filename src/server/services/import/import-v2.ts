@@ -33,8 +33,8 @@ export class IdMapper {
     [slug in SchemaUID]?: Map<string | number, string | number>;
   } = {};
 
-  public getMapping(slug: SchemaUID, fileId: string | number, defId?: string | number) {
-    return this.mapping[slug]?.get(`${fileId}`) || defId;
+  public getMapping(slug: SchemaUID, fileId: string | number) {
+    return this.mapping[slug]?.get(`${fileId}`);
   }
 
   public setMapping(slug: SchemaUID, fileId: string | number, dbId: string | number) {

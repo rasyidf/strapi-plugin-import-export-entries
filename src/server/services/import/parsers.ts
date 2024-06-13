@@ -43,7 +43,7 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
   const schema = getModel(slug);
 
   if(schema?.pluginOptions?.['import-export-map']){
-    schema?.pluginOptions?.['import-export-map'].forEach((entry) =>{
+    schema?.pluginOptions?.['import-export-map']?.k_v_pairs?.forEach((entry: string) =>{
       const k_V_pair = entry.split("=");
       headerMap.setMapping(slug, k_V_pair[0], k_V_pair[1]);
     });
@@ -54,7 +54,7 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
   data = data.map((datum) => {
     for (let name of relationNames) {
       try {
-        let dname = headerMap.getMapping(name, name);
+        let dname = headerMap.getMapping(slug, name) || name;
         datum[name] = JSON.parse(datum[dname]);
       } catch (err) {
         strapi.log.error(err);
