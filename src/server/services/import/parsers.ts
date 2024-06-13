@@ -6,27 +6,28 @@ import { EnumValues } from '../../../types';
 import { SchemaUID } from '../../types';
 // const IdMapper = require('../import/import-v2/IdMapper');
 // import { IdMapper } from '../import/import-v2';
+import { IdMapper } from './utils/id-mapper';
 
-class IdMapper {
+// class IdMapper {
 
-  constructor(){}
+//   constructor(){}
 
-  private mapping: {
-    [slug in SchemaUID]?: Map<string | number, string | number>;
-  } = {};
+//   private mapping: {
+//     [slug in SchemaUID]?: Map<string | number, string | number>;
+//   } = {};
 
-  public getMapping(slug: SchemaUID, fileId: string | number) {
-    return this.mapping[slug]?.get(`${fileId}`);
-  }
+//   public getMapping(slug: SchemaUID, fileId: string | number) {
+//     return this.mapping[slug]?.get(`${fileId}`);
+//   }
 
-  public setMapping(slug: SchemaUID, fileId: string | number, dbId: string | number) {
-    if (!this.mapping[slug]) {
-      this.mapping[slug] = new Map<string | number, string | number>();
-    }
+//   public setMapping(slug: SchemaUID, fileId: string | number, dbId: string | number) {
+//     if (!this.mapping[slug]) {
+//       this.mapping[slug] = new Map<string | number, string | number>();
+//     }
 
-    this.mapping[slug]!.set(`${fileId}`, dbId);
-  }
-}
+//     this.mapping[slug]!.set(`${fileId}`, dbId);
+//   }
+// }
 
 const headerMap = new IdMapper();
 const inputFormatToParser = {

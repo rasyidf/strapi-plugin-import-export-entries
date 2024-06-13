@@ -19,22 +19,23 @@ const objects_1 = require("../../../libs/objects");
 const models_1 = require("../../utils/models");
 // const IdMapper = require('../import/import-v2/IdMapper');
 // import { IdMapper } from '../import/import-v2';
-class IdMapper {
-    constructor() {
-        this.mapping = {};
-    }
-    getMapping(slug, fileId) {
-        var _a;
-        return (_a = this.mapping[slug]) === null || _a === void 0 ? void 0 : _a.get(`${fileId}`);
-    }
-    setMapping(slug, fileId, dbId) {
-        if (!this.mapping[slug]) {
-            this.mapping[slug] = new Map();
-        }
-        this.mapping[slug].set(`${fileId}`, dbId);
-    }
-}
-const headerMap = new IdMapper();
+const id_mapper_1 = require("./utils/id-mapper");
+// class IdMapper {
+//   constructor(){}
+//   private mapping: {
+//     [slug in SchemaUID]?: Map<string | number, string | number>;
+//   } = {};
+//   public getMapping(slug: SchemaUID, fileId: string | number) {
+//     return this.mapping[slug]?.get(`${fileId}`);
+//   }
+//   public setMapping(slug: SchemaUID, fileId: string | number, dbId: string | number) {
+//     if (!this.mapping[slug]) {
+//       this.mapping[slug] = new Map<string | number, string | number>();
+//     }
+//     this.mapping[slug]!.set(`${fileId}`, dbId);
+//   }
+// }
+const headerMap = new id_mapper_1.IdMapper();
 const inputFormatToParser = {
     csv: parseCsv,
     jso: parseJso,
