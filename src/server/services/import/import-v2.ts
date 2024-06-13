@@ -28,7 +28,10 @@ type ImportFailures = {
   data: any;
 };
 
-export default class IdMapper {
+export class IdMapper {
+
+  constructor(){}
+
   private mapping: {
     [slug in SchemaUID]?: Map<string | number, string | number>;
   } = {};

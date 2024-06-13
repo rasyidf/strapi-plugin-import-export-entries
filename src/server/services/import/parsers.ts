@@ -5,7 +5,7 @@ import { getModelAttributes, getModel } from '../../utils/models';
 import { EnumValues } from '../../../types';
 import { SchemaUID } from '../../types';
 // const IdMapper = require('../import/import-v2/IdMapper');
-import IdMapper from './import-v2';
+import { IdMapper } from './import-v2';
 
 const headerMap = new IdMapper();
 const inputFormatToParser = {
