@@ -64,6 +64,7 @@ async function parseInputData(format: InputFormat, dataRaw: InputDataRaw, { slug
 async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
   let data = await csvtojson().fromString(dataRaw);
   const schema = getModel(slug);
+  console.log("scheme: ", schema);
 
   if(schema?.pluginOptions?.['import-export-map']){
     schema?.pluginOptions?.['import-export-map']?.k_v_pairs?.forEach((entry: string) =>{

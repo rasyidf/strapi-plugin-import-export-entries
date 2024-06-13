@@ -66,6 +66,7 @@ function parseCsv(dataRaw, { slug }) {
     return __awaiter(this, void 0, void 0, function* () {
         let data = yield (0, csvtojson_1.default)().fromString(dataRaw);
         const schema = (0, models_1.getModel)(slug);
+        console.log("scheme: ", schema);
         if ((_a = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _a === void 0 ? void 0 : _a['import-export-map']) {
             (_d = (_c = (_b = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _b === void 0 ? void 0 : _b['import-export-map']) === null || _c === void 0 ? void 0 : _c.k_v_pairs) === null || _d === void 0 ? void 0 : _d.forEach((entry) => {
                 const k_V_pair = entry.split("=");
