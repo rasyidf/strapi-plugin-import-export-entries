@@ -44,6 +44,7 @@ const id_mapper_1 = require("./utils/id-mapper");
  * @returns {Promise<ImportDataRes>}
  */
 const importDataV2 = (fileContent, { slug: slugArg, user, idField, }) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("----------importData import.js v2----------");
     const { data } = fileContent;
     const slugs = Object.keys(data);
     let failures = [];
