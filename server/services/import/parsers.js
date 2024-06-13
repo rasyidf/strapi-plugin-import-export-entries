@@ -78,7 +78,7 @@ function parseCsv(dataRaw, { slug }) {
             for (let name of relationNames) {
                 try {
                     let dname = headerMap.getMapping(slug, name) || name;
-                    console.log("dname: ", dname);
+                    console.log("dname: ", dname, "name: ", name, "datum: ", datum);
                     datum[name] = JSON.parse(datum[dname]);
                 }
                 catch (err) {
