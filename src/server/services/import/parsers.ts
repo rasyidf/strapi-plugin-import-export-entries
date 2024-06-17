@@ -91,7 +91,7 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
     for (let name of Object.keys(datum)) {
       try {
         let dname = headerMap.getMapping(slug, name);
-        console.log("dname: ", dname, "name: ", name, "datum: ", datum );
+        //console.log("dname: ", dname, "name: ", name, "datum: ", datum );
         if(dname != undefined && !relationNames.includes(name)){
           datum[dname] = datum[name];
         }
@@ -122,6 +122,7 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
     
   });
 
+  console.log("returned_data: ", data);
   return data;
 }
 
