@@ -107,24 +107,24 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
         strapi.log.error(err);
       }
     }
-    let skip_fields = schema?.pluginOptions?.['import-export-map']?.skip_field;
-    let ok_to_return = true;
-    if (skip_fields){
-      skip_fields.forEach((field_name) => {
-        if(!Object.keys(datum).includes(field_name) || datum[field_name] == undefined || datum[field_name].trim() == ""){
-          ok_to_return = false;
-        }
-      });
-    }
-    if(!ok_to_return){
-      datum = {}
-    }
+    
     return datum;
     
   });
 
   console.log("returned_data: ", data);
-  return data;
+  return data.filter(function(datum){
+    let skip_fields = schema?.pluginOptions?.['import-export-map']?.skip_field;
+    //let ok_to_return = true;
+    if (skip_fields){
+      skip_fields.forEach((field_name) => {
+        if(!Object.keys(datum).includes(field_name) || datum[field_name] == undefined || datum[field_name].trim() == ""){
+          return false;
+        }
+      });
+    }
+    return true
+  });
 }
 
 async function parseJson(dataRaw: string) {

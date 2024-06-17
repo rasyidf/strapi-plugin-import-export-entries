@@ -87,7 +87,7 @@ function parseCsv(dataRaw, { slug }) {
             return datum;
         });
         data = data.map((datum) => {
-            var _a, _b, _c, _d;
+            var _a, _b;
             for (let name of Object.keys(datum)) {
                 try {
                     let dname = headerMap.getMapping(slug, name);
@@ -107,22 +107,22 @@ function parseCsv(dataRaw, { slug }) {
                     strapi.log.error(err);
                 }
             }
-            let skip_fields = (_d = (_c = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _c === void 0 ? void 0 : _c['import-export-map']) === null || _d === void 0 ? void 0 : _d.skip_field;
-            let ok_to_return = true;
-            if (skip_fields) {
-                skip_fields.forEach((field_name) => {
-                    if (!Object.keys(datum).includes(field_name) || datum[field_name] == undefined || datum[field_name].trim() == "") {
-                        ok_to_return = false;
-                    }
-                });
-            }
-            if (!ok_to_return) {
-                datum = {};
-            }
             return datum;
         });
         console.log("returned_data: ", data);
-        return data;
+        return data.filter(function (datum) {
+            var _a, _b;
+            let skip_fields = (_b = (_a = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _a === void 0 ? void 0 : _a['import-export-map']) === null || _b === void 0 ? void 0 : _b.skip_field;
+            //let ok_to_return = true;
+            if (skip_fields) {
+                skip_fields.forEach((field_name) => {
+                    if (!Object.keys(datum).includes(field_name) || datum[field_name] == undefined || datum[field_name].trim() == "") {
+                        return false;
+                    }
+                });
+            }
+            return true;
+        });
     });
 }
 function parseJson(dataRaw) {
