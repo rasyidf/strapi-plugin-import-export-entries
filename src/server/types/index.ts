@@ -79,7 +79,7 @@ type CollectionTypeSchema = StrapiCollectionTypeSchema & SchemaPluginOptions;
 type SingleTypeSchema = StrapiSingleTypeSchema & SchemaPluginOptions;
 type ComponentSchema = StrapiComponentSchema & { uid: SchemaUID } & SchemaPluginOptions;
 type RelationsId = {
-  [key:string]:Record<string,number>
+  [key:string]:Record<string,string | number>
 }
 type SchemaPluginOptions = {
   pluginOptions?: {
@@ -100,6 +100,7 @@ type SchemaPluginOptions = {
       //Establish map from CSV table headers to Strapi object fields, listing the Strapi object field name first followed by table header 
       //ie. ["item_number=Stock #", "asking_price=Price Internet"]
       k_v_pairs?: Array<string>;
+      skip_field?: Array<string>;
       //If you are importing mapped entries that include RelationName of relations and you need to convert the CSV value to a relationship id
       //Identify the relationship field name as the Key followed by a dictionary of the CSV values as keys and the relationship ids as the values
       //ie. {"status":{"TRUE":3, "FALSE":4}}

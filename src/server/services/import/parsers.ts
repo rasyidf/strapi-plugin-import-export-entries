@@ -88,27 +88,38 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
   });
 
   data = data.map((datum) => {
-    for (let name of Object.keys(schema.attributes)) {
+    for (let name of Object.keys(datum)) {
       try {
         let dname = headerMap.getMapping(slug, name);
         console.log("dname: ", dname, "name: ", name, "datum: ", datum );
         if(dname != undefined && !relationNames.includes(name)){
-          datum[name] = datum[dname];
+          datum[dname] = datum[name];
         }
         
-        if(dname != undefined && relationNames.includes(name)){
-          let relations = schema?.pluginOptions?.['import-export-map']?.relations_id;
-          if(relations){
+        let relations = schema?.pluginOptions?.['import-export-map']?.relations_id;
+        if(relations && dname != undefined){
+          if(Object.keys(relations).includes(dname.toString())){
             console.log("relations:", relations);
-            datum[name] = relations[name][datum[dname]];            
+            datum[dname] = relations[dname][datum[name]];
           }
-          
-        }      
+        }     
       } catch (err) {
         strapi.log.error(err);
       }
     }
-    return datum;
+    let skip_fields = schema?.pluginOptions?.['import-export-map']?.skip_field;
+    let ok_to_return = true;
+    if (skip_fields){
+      skip_fields.forEach((field_name) => {
+        if(!Object.keys(datum).includes(field_name) || datum[field_name] == undefined || datum[field_name].trim() == ""){
+          ok_to_return = false;
+        }
+      });
+    }
+    if(ok_to_return){
+      return datum;
+    }
+    
   });
 
   return data;
