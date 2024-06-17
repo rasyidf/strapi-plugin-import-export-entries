@@ -110,7 +110,7 @@ function parseCsv(dataRaw, { slug }) {
             return datum;
         });
         console.log("returned_data: ", data);
-        return data.filter(function (datum) {
+        let filtered_data = data.filter(function (datum) {
             var _a, _b;
             let skip_fields = (_b = (_a = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _a === void 0 ? void 0 : _a['import-export-map']) === null || _b === void 0 ? void 0 : _b.skip_field;
             //let ok_to_return = true;
@@ -123,6 +123,8 @@ function parseCsv(dataRaw, { slug }) {
             }
             return true;
         });
+        console.log("returned filtered_data: ", filtered_data);
+        return filtered_data;
     });
 }
 function parseJson(dataRaw) {

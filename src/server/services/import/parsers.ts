@@ -113,7 +113,7 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
   });
 
   console.log("returned_data: ", data);
-  return data.filter(function(datum){
+  let filtered_data = data.filter(function(datum){
     let skip_fields = schema?.pluginOptions?.['import-export-map']?.skip_field;
     //let ok_to_return = true;
     if (skip_fields){
@@ -125,6 +125,8 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
     }
     return true
   });
+  console.log("returned filtered_data: ", filtered_data);
+  return filtered_data
 }
 
 async function parseJson(dataRaw: string) {
