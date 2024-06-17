@@ -87,19 +87,19 @@ function parseCsv(dataRaw, { slug }) {
             return datum;
         });
         data = data.map((datum) => {
-            var _a, _b;
-            for (let name of Object.keys(schema.attributes)) {
+            var _a, _b, _c, _d;
+            for (let name of Object.keys(datum)) {
                 try {
                     let dname = headerMap.getMapping(slug, name);
                     console.log("dname: ", dname, "name: ", name, "datum: ", datum);
                     if (dname != undefined && !relationNames.includes(name)) {
-                        datum[name] = datum[dname];
+                        datum[dname] = datum[name];
                     }
-                    if (dname != undefined && relationNames.includes(name)) {
-                        let relations = (_b = (_a = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _a === void 0 ? void 0 : _a['import-export-map']) === null || _b === void 0 ? void 0 : _b.relations_id;
-                        if (relations) {
+                    let relations = (_b = (_a = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _a === void 0 ? void 0 : _a['import-export-map']) === null || _b === void 0 ? void 0 : _b.relations_id;
+                    if (relations && dname != undefined) {
+                        if (Object.keys(relations).includes(dname.toString())) {
                             console.log("relations:", relations);
-                            datum[name] = relations[name][datum[dname]];
+                            datum[dname] = relations[dname][datum[name]];
                         }
                     }
                 }
@@ -107,7 +107,18 @@ function parseCsv(dataRaw, { slug }) {
                     strapi.log.error(err);
                 }
             }
-            return datum;
+            let skip_fields = (_d = (_c = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _c === void 0 ? void 0 : _c['import-export-map']) === null || _d === void 0 ? void 0 : _d.skip_field;
+            let ok_to_return = true;
+            if (skip_fields) {
+                skip_fields.forEach((field_name) => {
+                    if (!Object.keys(datum).includes(field_name) || datum[field_name] == undefined || datum[field_name].trim() == "") {
+                        ok_to_return = false;
+                    }
+                });
+            }
+            if (ok_to_return) {
+                return datum;
+            }
         });
         return data;
     });
