@@ -116,9 +116,10 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
         }
       });
     }
-    if(ok_to_return){
-      return datum;
+    if(!ok_to_return){
+      datum = {}
     }
+    return datum;
     
   });
 

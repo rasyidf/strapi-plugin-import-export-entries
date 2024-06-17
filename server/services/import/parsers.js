@@ -116,9 +116,10 @@ function parseCsv(dataRaw, { slug }) {
                     }
                 });
             }
-            if (ok_to_return) {
-                return datum;
+            if (!ok_to_return) {
+                datum = {};
             }
+            return datum;
         });
         console.log("returned_data: ", data);
         return data;
