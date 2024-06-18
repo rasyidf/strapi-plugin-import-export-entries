@@ -110,18 +110,20 @@ function parseCsv(dataRaw, { slug }) {
             return datum;
         });
         console.log("returned_data: ", data);
+        let filtered_data_objects = [];
         let filtered_data = data.filter(function (datum) {
             var _a, _b;
             let skip_fields = (_b = (_a = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _a === void 0 ? void 0 : _a['import-export-map']) === null || _b === void 0 ? void 0 : _b.skip_field;
             //let ok_to_return = true;
             if (skip_fields) {
                 skip_fields.forEach((field_name) => {
-                    if (!Object.keys(datum).includes(field_name) || datum[field_name] == undefined || datum[field_name].trim() == "") {
+                    if (Object.keys(datum).includes(field_name) || datum[field_name] == undefined || datum[field_name].trim() == "") {
                         return false;
                     }
                 });
             }
             return true;
+            //filtered_data_objects.push(datum)
         }).map(function (datum) { return datum; });
         console.log("returned filtered_data: ", filtered_data);
         return filtered_data;

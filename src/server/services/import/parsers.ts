@@ -113,17 +113,19 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
   });
 
   console.log("returned_data: ", data);
+  let filtered_data_objects: Array<Object> = []
   let filtered_data = data.filter(function(datum){
     let skip_fields = schema?.pluginOptions?.['import-export-map']?.skip_field;
     //let ok_to_return = true;
     if (skip_fields){
       skip_fields.forEach((field_name) => {
-        if(!Object.keys(datum).includes(field_name) || datum[field_name] == undefined || datum[field_name].trim() == ""){
+        if(Object.keys(datum).includes(field_name) || datum[field_name] == undefined || datum[field_name].trim() == ""){
           return false;
         }
       });
     }
     return true
+    //filtered_data_objects.push(datum)
   }).map(function(datum){return datum;});
   console.log("returned filtered_data: ", filtered_data);
   return filtered_data
