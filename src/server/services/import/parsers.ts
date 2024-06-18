@@ -124,7 +124,7 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
       });
     }
     return true
-  });
+  }).map(function(datum){return datum;});
   console.log("returned filtered_data: ", filtered_data);
   return filtered_data
 }

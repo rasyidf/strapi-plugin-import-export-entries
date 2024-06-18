@@ -122,7 +122,7 @@ function parseCsv(dataRaw, { slug }) {
                 });
             }
             return true;
-        });
+        }).map(function (datum) { return datum; });
         console.log("returned filtered_data: ", filtered_data);
         return filtered_data;
     });
