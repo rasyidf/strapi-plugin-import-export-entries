@@ -124,10 +124,10 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
         }
       });
     }
-    return true
-    //filtered_data_objects.push(datum)
+    // return true
+    filtered_data_objects.push(datum)
   }).map(function(datum){return datum;});
-  console.log("returned filtered_data: ", filtered_data);
+  console.log("returned filtered_data: ", filtered_data, "returned_filtered_data_objects: ", filtered_data_objects);
   return filtered_data
 }
 
