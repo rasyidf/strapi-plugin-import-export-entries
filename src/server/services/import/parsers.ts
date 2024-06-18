@@ -123,7 +123,12 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
     return datum;
     
   });
-  let filtered_data = data.filter(x => !x.includes({}));
+  let filtered_data: Array<Object> = []
+  data.forEach((value) => {
+    if(Object.keys(value).length != 0){
+      filtered_data.push(value);
+    }
+  })
   console.log("returned filtered_data: ", filtered_data);
   console.log("returned_data: ", data);
   return data;

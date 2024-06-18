@@ -121,7 +121,12 @@ function parseCsv(dataRaw, { slug }) {
             }
             return datum;
         });
-        let filtered_data = data.filter(x => !x.includes({}));
+        let filtered_data = [];
+        data.forEach((value) => {
+            if (Object.keys(value).length != 0) {
+                filtered_data.push(value);
+            }
+        });
         console.log("returned filtered_data: ", filtered_data);
         console.log("returned_data: ", data);
         return data;
