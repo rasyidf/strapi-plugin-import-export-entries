@@ -117,14 +117,15 @@ function parseCsv(dataRaw, { slug }) {
             //let ok_to_return = true;
             if (skip_fields) {
                 skip_fields.forEach((field_name) => {
-                    if (Object.keys(datum).includes(field_name) || datum[field_name] == undefined || datum[field_name].trim() == "") {
-                        return false;
+                    if (!Object.keys(datum).includes(field_name) || datum[field_name] != undefined || datum[field_name].trim() != "") {
+                        // return false;
+                        filtered_data_objects.push(datum);
                     }
                 });
             }
             // return true
-            filtered_data_objects.push(datum);
-        }).map(function (datum) { return datum; });
+        });
+        // .map(function(datum){return datum;});
         console.log("returned filtered_data: ", filtered_data, "returned_filtered_data_objects: ", filtered_data_objects);
         return filtered_data;
     });
