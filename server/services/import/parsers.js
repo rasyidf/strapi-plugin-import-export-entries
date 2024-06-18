@@ -128,8 +128,8 @@ function parseCsv(dataRaw, { slug }) {
             }
         });
         console.log("returned filtered_data: ", filtered_data);
-        console.log("returned_data: ", data);
-        return data;
+        //console.log("returned_data: ", data);
+        return filtered_data;
     });
 }
 function parseJson(dataRaw) {

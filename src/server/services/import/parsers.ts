@@ -130,8 +130,8 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
     }
   })
   console.log("returned filtered_data: ", filtered_data);
-  console.log("returned_data: ", data);
-  return data;
+  //console.log("returned_data: ", data);
+  return filtered_data;
 }
 
 async function parseJson(dataRaw: string) {
