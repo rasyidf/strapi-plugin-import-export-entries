@@ -87,7 +87,7 @@ function parseCsv(dataRaw, { slug }) {
             return datum;
         });
         data = data.map((datum) => {
-            var _a, _b;
+            var _a, _b, _c, _d;
             for (let name of Object.keys(datum)) {
                 try {
                     let dname = headerMap.getMapping(slug, name);
@@ -107,27 +107,22 @@ function parseCsv(dataRaw, { slug }) {
                     strapi.log.error(err);
                 }
             }
-            return datum;
-        });
-        console.log("returned_data: ", data);
-        let filtered_data_objects = [];
-        let filtered_data = data.filter(function (datum) {
-            var _a, _b;
-            let skip_fields = (_b = (_a = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _a === void 0 ? void 0 : _a['import-export-map']) === null || _b === void 0 ? void 0 : _b.skip_field;
-            //let ok_to_return = true;
+            let skip_fields = (_d = (_c = schema === null || schema === void 0 ? void 0 : schema.pluginOptions) === null || _c === void 0 ? void 0 : _c['import-export-map']) === null || _d === void 0 ? void 0 : _d.skip_field;
+            let ok_to_return = true;
             if (skip_fields) {
                 skip_fields.forEach((field_name) => {
-                    if (!Object.keys(datum).includes(field_name) || datum[field_name] != undefined || datum[field_name].trim() != "") {
-                        // return false;
-                        filtered_data_objects.push(datum);
+                    if (!Object.keys(datum).includes(field_name) || datum[field_name] == undefined || datum[field_name].trim() == "") {
+                        ok_to_return = false;
                     }
                 });
             }
-            // return true
+            if (!ok_to_return) {
+                datum = {};
+            }
+            return datum;
         });
-        // .map(function(datum){return datum;});
-        console.log("returned filtered_data: ", filtered_data, "returned_filtered_data_objects: ", filtered_data_objects);
-        return filtered_data;
+        console.log("returned_data: ", data);
+        return data;
     });
 }
 function parseJson(dataRaw) {

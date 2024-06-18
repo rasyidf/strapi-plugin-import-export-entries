@@ -108,29 +108,24 @@ async function parseCsv(dataRaw: string, { slug }: { slug: SchemaUID }) {
       }
     }
     
+    let skip_fields = schema?.pluginOptions?.['import-export-map']?.skip_field;
+    let ok_to_return = true;
+    if (skip_fields){
+      skip_fields.forEach((field_name) => {
+        if(!Object.keys(datum).includes(field_name) || datum[field_name] == undefined || datum[field_name].trim() == ""){
+          ok_to_return = false;
+        }
+      });
+    }
+    if(!ok_to_return){
+      datum = {}
+    }
     return datum;
     
   });
 
   console.log("returned_data: ", data);
-  let filtered_data_objects: Array<Object> = []
-  let filtered_data = data.filter(function(datum){
-    let skip_fields = schema?.pluginOptions?.['import-export-map']?.skip_field;
-    //let ok_to_return = true;
-    if (skip_fields){
-      skip_fields.forEach((field_name) => {
-        if(!Object.keys(datum).includes(field_name) || datum[field_name] != undefined || datum[field_name].trim() != ""){
-          // return false;
-          filtered_data_objects.push(datum)
-        }
-      });
-    }
-    // return true
-    
-  })
-  // .map(function(datum){return datum;});
-  console.log("returned filtered_data: ", filtered_data, "returned_filtered_data_objects: ", filtered_data_objects);
-  return filtered_data
+  return data;
 }
 
 async function parseJson(dataRaw: string) {
