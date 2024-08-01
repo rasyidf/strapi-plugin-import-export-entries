@@ -2,6 +2,9 @@
 
 Import/Export data from and to your database in just few clicks.
 
+> [!NOTE]
+> This is the fork of original repository located [here](https://github.com/Baboo7/strapi-plugin-import-export-entries#readme) with additional commits that fixes compability issue with latest Strapi.
+
 <p align="center">
   <img src="./doc/logo.png" alt="UI" width="300"/>
 </p>
