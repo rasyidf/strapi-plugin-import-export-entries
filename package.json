@@ -52,6 +52,7 @@
     "@strapi/strapi": "^4.10.5",
     "@types/fs-extra": "^11.0.1",
     "@types/jest": "^29.5.8",
+    "@types/node": "^18.15.11",
     "@types/node-fetch": "^2.6.3",
     "better-sqlite3": "^9.1.1",
     "eslint": "^8.23.0",
