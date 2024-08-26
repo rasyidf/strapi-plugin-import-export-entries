@@ -150,13 +150,13 @@ export const ExportModal = ({ availableExportFormats = [dataFormats.CSV, dataFor
                   </Checkbox>
                 )}
                 {shouldShowOption('deepness') && (
-                  <Select label={i18n('plugin.export.deepness')} placeholder={i18n('plugin.export.deepness')} value={options.deepness} onChange={handleSetOption('deepness')}>
+                  <SingleSelect label={i18n('plugin.export.deepness')} placeholder={i18n('plugin.export.deepness')} value={options.deepness} onChange={handleSetOption('deepness')}>
                     {range(1, 21).map((deepness) => (
-                      <Option key={deepness} value={deepness}>
+                      <SingleSelectOption key={deepness} value={deepness}>
                         {deepness}
-                      </Option>
+                      </SingleSelectOption>
                     ))}
-                  </Select>
+                  </SingleSelect>
                 )}
               </Flex>
             </>
