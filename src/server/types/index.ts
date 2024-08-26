@@ -92,7 +92,7 @@ type SchemaPluginOptions = {
     i18n?: {
       localized?: true;
     };
-    'import-export-entries-zg'?: {
+    'import-export-entries'?: {
       idField?: string;
     };
     //custom csv mapping if using different table headers than the columns in the database 

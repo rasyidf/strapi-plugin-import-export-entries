@@ -1,4 +1,4 @@
-import { Box, Checkbox, ContentLayout, Flex, Link, Option, Select, Typography } from '@strapi/design-system';
+import { Box, Checkbox, ContentLayout, Flex, Link, SingleOption, SingleSelect, Typography } from '@strapi/design-system';
 import { CheckPagePermissions } from '@strapi/helper-plugin';
 import range from 'lodash/range';
 import React, { memo, useState } from 'react';
@@ -56,18 +56,18 @@ const HomePage = () => {
                     </Checkbox>
                   </Flex>
                   <Flex justifyContent="space-between">
-                    <Select
+                    <SingleSelect
                       label={i18n('plugin.export.deepness', 'Deepness')}
                       placeholder={i18n('plugin.export.deepness', 'Deepness')}
                       value={preferences.deepness}
                       onChange={(value) => handleUpdatePreferences('deepness', value)}
                     >
                       {range(1, 21).map((deepness) => (
-                        <Option key={deepness} value={deepness}>
+                        <SingleOption key={deepness} value={deepness}>
                           {deepness}
-                        </Option>
+                        </SingleOption>
                       ))}
-                    </Select>
+                    </SingleSelect>
                   </Flex>
                 </Flex>
               </Box>
@@ -78,17 +78,12 @@ const HomePage = () => {
             <Flex direction="column" alignItems="start" gap={6}>
               <Typography variant="alpha">{i18n('plugin.page.homepage.section.need-help.title', 'Feature Request / Bug Report')}</Typography>
 
+              <Typography variant="delta">Copyright &copy; BWDX Studio</Typography>
               <Box>
                 <Flex direction="column" alignItems="start" gap={4}>
                   <Typography>{i18n('plugin.page.homepage.section.need-help.description', 'Feel free to reach out on the product roadmap, discord or github ✌️')}</Typography>
                   <Flex gap={4}>
-                    <Link href="https://strapi-import-export-entries-zg.canny.io" isExternal>
-                      {i18n('plugin.page.homepage.section.need-help.product-roadmap', 'Product Roadmap')}
-                    </Link>
-                    <Link href="https://discord.gg/dcqCAFFdP8" isExternal>
-                      {i18n('plugin.page.homepage.section.need-help.discord', 'Discord')}
-                    </Link>
-                    <Link href="https://github.com/Baboo7/strapi-plugin-import-export-entries-zg/issues" isExternal>
+                    <Link href="https://github.com/Stradivary" isExternal>
                       {i18n('plugin.page.homepage.section.need-help.github', 'GitHub')}
                     </Link>
                   </Flex>

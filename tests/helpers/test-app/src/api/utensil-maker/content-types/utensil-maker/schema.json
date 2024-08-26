@@ -10,7 +10,7 @@
     "draftAndPublish": true
   },
   "pluginOptions": {
-    "import-export-entries-zg": {
+    "import-export-entries": {
       "idField": "name"
     }
   },

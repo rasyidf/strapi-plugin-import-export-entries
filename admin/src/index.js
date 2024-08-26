@@ -24,7 +24,7 @@ export default {
       },
       permissions: pluginPermissions.main,
       Component: async () => {
-        const component = await import(/* webpackChunkName: "import-export-entries-zg" */ './pages/App');
+        const component = await import(/* webpackChunkName: "import-export-entries" */ './pages/App');
 
         return component;
       },
@@ -65,7 +65,7 @@ export default {
   async registerTrads({ locales }) {
     const importedTrads = await Promise.all(
       locales.map((locale) => {
-        return import(/* webpackChunkName: "import-export-entries-zg-translation-[request]" */ `./translations/${locale}.json`)
+        return import(/* webpackChunkName: "import-export-entries-translation-[request]" */ `./translations/${locale}.json`)
           .then(({ default: data }) => {
             return {
               data: prefixPluginTranslations(data, pluginId),

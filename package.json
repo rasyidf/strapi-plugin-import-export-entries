@@ -1,9 +1,9 @@
 {
-  "name": "strapi-plugin-import-export-entries-zg",
+  "name": "strapi-plugin-import-export-entries",
   "version": "1.23.1",
   "description": "Import/Export data from and to your database in just few clicks.",
   "strapi": {
-    "name": "import-export-entries-zg",
+    "name": "import-export-entries",
     "description": "Import/Export data from and to your database in just few clicks.",
     "kind": "plugin",
     "displayName": "Import Export Entries"
@@ -96,11 +96,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ZeeksGeeks/strapi-plugin-import-export-entries-zg.git"
+    "url": "git+https://github.com/ZeeksGeeks/strapi-plugin-import-export-entries.git"
   },
   "bugs": {
-    "url": "https://github.com/ZeeksGeeks/strapi-plugin-import-export-entries-zg/issues"
+    "url": "https://github.com/ZeeksGeeks/strapi-plugin-import-export-entries/issues"
   },
-  "homepage": "https://github.com/ZeeksGeeks/strapi-plugin-import-export-entries-zg#readme",
+  "homepage": "https://github.com/ZeeksGeeks/strapi-plugin-import-export-entries#readme",
   "license": "MIT"
 }

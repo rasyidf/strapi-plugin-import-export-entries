@@ -1,7 +1,7 @@
 const { join } = require('path');
 
 module.exports = ({ env }) => ({
-  'import-export-entries-zg': {
+  'import-export-entries': {
     enabled: true,
     resolve: resolveFromRoot(),
     config: {

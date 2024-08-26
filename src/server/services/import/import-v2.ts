@@ -229,7 +229,7 @@ const updateOrCreate = async (
 ) => {
   console.log("----------Running Update or Create----------");
   const schema = getModel(slug);
-  const idField = idFieldArg || schema?.pluginOptions?.['import-export-entries-zg']?.idField || 'id';
+  const idField = idFieldArg || schema?.pluginOptions?.['import-export-entries']?.idField || 'id';
 
   let fileEntry = cloneDeep(fileEntryArg);
 

@@ -12,8 +12,8 @@
   "plugin.cta.export": "Export",
   "plugin.cta.import": "Import",
 
-  "plugin.data-format.csv": "CSV [deprecated]",
-  "plugin.data-format.json": "JSON [deprecated]",
+  "plugin.data-format.csv": "CSV (v1)",
+  "plugin.data-format.json": "JSON (v1)",
   "plugin.data-format.json-v2": "JSON (v2)",
 
   "plugin.form.field.id-field.hint": "Choose the field used as a unique identifier",

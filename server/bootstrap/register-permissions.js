@@ -17,13 +17,13 @@ function registerPermissionActions() {
                 section: 'plugins',
                 displayName: 'Import',
                 uid: 'import',
-                pluginName: 'import-export-entries-zg',
+                pluginName: 'import-export-entries',
             },
             {
                 section: 'plugins',
                 displayName: 'Export',
                 uid: 'export',
-                pluginName: 'import-export-entries-zg',
+                pluginName: 'import-export-entries',
             },
         ];
         yield strapi.admin.services.permission.actionProvider.registerMany(actions);
