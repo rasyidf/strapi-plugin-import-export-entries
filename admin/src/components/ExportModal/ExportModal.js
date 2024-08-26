@@ -1,6 +1,6 @@
 import './style.css';
 
-import { Button, Checkbox, Flex, Grid, GridItem, Loader, ModalBody, ModalFooter, ModalHeader, ModalLayout, Option, Portal, Select, Typography } from '@strapi/design-system';
+import { Button, Checkbox, Flex, Grid, GridItem, Loader, ModalBody, ModalFooter, ModalHeader, ModalLayout, SingleSelectOption, Portal, SingleSelect, Typography } from '@strapi/design-system';
 import pick from 'lodash/pick';
 import range from 'lodash/range';
 import qs from 'qs';
@@ -112,7 +112,7 @@ export const ExportModal = ({ availableExportFormats = [dataFormats.CSV, dataFor
               {shouldShowOption('exportFormat') && (
                 <Grid gap={8}>
                   <GridItem col={12}>
-                    <Select
+                    <SingleSelect
                       id="export-format"
                       label={i18n('plugin.export.export-format')}
                       required
@@ -121,11 +121,11 @@ export const ExportModal = ({ availableExportFormats = [dataFormats.CSV, dataFor
                       onChange={handleSetOption('exportFormat')}
                     >
                       {availableExportFormats.map((format) => (
-                        <Option key={format} value={format}>
+                        <SingleSelectOption key={format} value={format}>
                           {i18n(`plugin.data-format.${format}`)}
-                        </Option>
+                        </SingleSelectOption>
                       ))}
-                    </Select>
+                    </SingleSelect>
                   </GridItem>
                 </Grid>
               )}

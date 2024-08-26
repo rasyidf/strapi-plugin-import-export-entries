@@ -1,4 +1,4 @@
-import { Box, Checkbox, ContentLayout, Flex, Link, SingleOption, SingleSelect, Typography } from '@strapi/design-system';
+import { Box, Checkbox, ContentLayout, Flex, Link, SingleSelectOption, SingleSelect, Typography } from '@strapi/design-system';
 import { CheckPagePermissions } from '@strapi/helper-plugin';
 import range from 'lodash/range';
 import React, { memo, useState } from 'react';
@@ -63,9 +63,9 @@ const HomePage = () => {
                       onChange={(value) => handleUpdatePreferences('deepness', value)}
                     >
                       {range(1, 21).map((deepness) => (
-                        <SingleOption key={deepness} value={deepness}>
+                        <SingleSelectOption key={deepness} value={deepness}>
                           {deepness}
-                        </SingleOption>
+                        </SingleSelectOption>
                       ))}
                     </SingleSelect>
                   </Flex>
